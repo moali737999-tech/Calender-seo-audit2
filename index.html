@@ -167,6 +167,18 @@
   .phase .pid{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--text-faint);}
   .sync-note{font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--text-faint); margin-top:12px;}
 
+  .recheck{display:flex; gap:10px; align-items:flex-start; font-size:13.5px; line-height:1.5; border-radius:8px; padding:9px 12px; margin:-2px 0 12px;}
+  .recheck .rc-tag{font-family:"IBM Plex Mono",monospace; font-size:10.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; white-space:nowrap; padding-top:2px;}
+  .recheck.fixed{background:var(--good-soft);} .recheck.fixed .rc-tag{color:var(--good);}
+  .recheck.partial{background:var(--warning-soft);} .recheck.partial .rc-tag{color:var(--warning);}
+  .recheck.open{background:var(--critical-soft);} .recheck.open .rc-tag{color:var(--critical);}
+  .ra-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:16px;}
+  @media (max-width:640px){ .ra-grid{grid-template-columns:1fr;} }
+  .ra-stats{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:16px;}
+  @media (max-width:640px){ .ra-stats{grid-template-columns:1fr 1fr;} }
+  .ra-stat{background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:12px 14px; display:flex; flex-direction:column; gap:2px;}
+  .ra-stat b{font-family:"Space Grotesk",sans-serif; font-size:24px; font-variant-numeric:tabular-nums;}
+  .ra-stat span{font-size:12.5px; color:var(--text-muted);}
   footer{margin-top:52px; padding-top:20px; border-top:1px solid var(--border); font-size:12.5px; color:var(--text-faint); display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;}
   @media (prefers-reduced-motion: reduce){ *{transition:none !important;} }
 </style>
@@ -175,46 +187,47 @@
 <div class="wrap">
 
   <header class="hero">
-    <div class="eyebrow">SEO + TECHNICAL AUDIT <span class="dot"></span> calendar.marketing <span class="dot"></span> 28 Sep 2026</div>
+    <div class="eyebrow">SEO + TECHNICAL AUDIT <span class="dot"></span> calendar.marketing <span class="dot"></span> Re-audit 5 Oct 2026 <span class="dot"></span> First audit 28 Sep</div>
     <div class="hero-grid">
       <div class="hero-copy">
-        <h1>Every page tells Google its real address is a domain that doesn't exist.</h1>
-        <p class="muted">A crawl of all 122 sitemap URLs found the canonical, sitemap, robots.txt and hreflang all pointing to <code>http://calender.marketing</code>, a misspelled domain with no DNS record. The site also has a full Arabic version that search engines can't see, and 26&nbsp;MB of unoptimized images. Findings are grouped by category below. Tick each fix as it ships and the score updates.</p>
+        <h1>21 of 28 fixes shipped in a week. The blog disappeared along the way.</h1>
+        <p class="muted">The re-audit crawled all 220 sitemap URLs (110 English, 110 Arabic). The wrong-domain canonicals are gone, the Arabic site is now indexable on its own <code>/ar/</code> URLs, images went from 2.3&nbsp;MB to about 30&nbsp;KB, and pages are served from the CDN cache. One new critical problem: <code>/blog</code> and <code>/ar/blog</code> are empty and every former article URL returns 404. Tick each remaining fix as it ships and the score updates.</p>
         <div class="meta-chips">
           <span class="chip">MENA marketing calendar</span>
           <span class="chip">Next.js on Hostinger</span>
           <span class="chip">Bilingual EN / AR</span>
-          <span class="chip">122 URLs crawled</span>
+          <span class="chip">220 URLs crawled (EN + AR)</span>
         </div>
       </div>
       <div class="gauge-card">
         <svg width="176" height="106" viewBox="0 0 200 120" role="img" aria-labelledby="gaugeTitle">
           <title id="gaugeTitle">Health score</title>
           <path d="M20,100 A80,80 0 0 1 180,100" fill="none" stroke="var(--border)" stroke-width="16" stroke-linecap="round"/>
-          <path id="gaugeArc" d="M20,100 A80,80 0 0 1 180,100" fill="none" stroke="var(--critical)" stroke-width="16" stroke-linecap="round" stroke-dasharray="115.6 400"/>
-          <text id="gaugeNum" x="100" y="92" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="40" fill="var(--text)">46</text>
+          <path id="gaugeArc" d="M20,100 A80,80 0 0 1 180,100" fill="none" stroke="var(--good)" stroke-width="16" stroke-linecap="round" stroke-dasharray="208.6 400"/>
+          <text id="gaugeNum" x="100" y="92" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="40" fill="var(--text)">83</text>
         </svg>
         <span class="gauge-label">Health score / 100</span>
-        <span class="gauge-sub" id="gaugeSub">Baseline 46 · 93 when all fixes ship</span>
+        <span class="gauge-sub" id="gaugeSub">Up from 46 · 94 when all fixes ship</span>
       </div>
     </div>
   </header>
 
   <div class="progress-card" aria-live="polite">
     <div class="progress-top">
-      <strong id="progText">0 of 28 fixes done</strong>
+      <strong id="progText">21 of 30 fixes done</strong>
       <span class="mono" id="syncState">Loading saved progress…</span>
     </div>
     <div class="bartrack"><div class="barfill" id="progBar" style="width:0%; background:var(--good);"></div></div>
     <div class="sev-split" id="sevSplit">
-      <span><b style="color:var(--critical)">Critical</b> 0/4</span>
-      <span><b style="color:var(--serious)">High</b> 0/9</span>
-      <span><b style="color:var(--warning)">Medium</b> 0/11</span>
-      <span><b style="color:var(--good)">Low</b> 0/4</span>
+      <span><b style="color:var(--critical)">Critical</b> 4/5</span>
+      <span><b style="color:var(--serious)">High</b> 7/9</span>
+      <span><b style="color:var(--warning)">Medium</b> 8/11</span>
+      <span><b style="color:var(--good)">Low</b> 2/5</span>
     </div>
   </div>
 
   <nav class="toc">
+    <a href="#reaudit">Re-audit 5 Oct</a>
     <a href="#summary">Summary</a>
     <a href="#scores">Category scores</a>
     <a href="#technical">Technical</a>
@@ -228,8 +241,53 @@
     <a href="#plan">Action Plan</a>
   </nav>
 
+  <section id="reaudit">
+    <div class="section-head"><h2>Re-audit — 5 Oct 2026</h2><span class="score-tag">46 → 83 / 100</span></div>
+    <div class="ra-stats">
+      <div class="ra-stat"><b style="color:var(--good)">21</b><span>fixed and verified live</span></div>
+      <div class="ra-stat"><b style="color:var(--warning)">3</b><span>partly done or blocked (H5, M10, M11)</span></div>
+      <div class="ra-stat"><b style="color:var(--critical)">4</b><span>still open (H8, M9, L1, L2)</span></div>
+      <div class="ra-stat"><b style="color:var(--critical)">2</b><span>new (C5 blog, L5 filters)</span></div>
+    </div>
+
+    <div class="finding" data-fix="C5">
+      <div class="finding-head"><span class="fid">C5</span><span class="sev sev-critical">Critical · new</span><h3>The blog is empty and every article URL returns 404</h3></div>
+      <p><code>/blog</code> and <code>/ar/blog</code> load with the heading and newsletter box, but the list shows "No events match these filters". There are 0 posts. All 10 former article URLs, old and new paths, return 404, including the 1,832-word Saudi National Day guide. The sitemap lists only the two index pages. This most likely happened while the test posts were being removed, or the blog list is now running the events filter query.</p>
+      <div class="evidence"><span class="ev-label">curl -w "%{http_code}" · 5 Oct 2026</span><code>/blog                                       200   "No events match these filters."
+/en/blog/ramadan-campaign-checklist         301 → /blog/ramadan-campaign-checklist → 404
+/ar/blog/ramadan-campaign-checklist         404
+/blog/saudi-national-day-marketing-ideas    404
+sitemap.xml blog URLs                       /blog, /ar/blog only</code></div>
+      <div class="fix"><b>Fix →</b> Check the CMS and database first. If the posts exist, the list query is wrong: the empty-state text comes from the events filter, so the blog page is probably querying events or filtering by a locale or status that no post has. If they were deleted, restore them from a backup. Then 301 every old <code>/en/blog/&lt;slug&gt;</code> and <code>/ar/blog/&lt;slug&gt;</code> to its live URL and add the posts back to the sitemap.</div>
+    </div>
+
+    <div class="ra-grid">
+      <div class="summary-card wins">
+        <h3><span class="sev sev-low">Fixed</span> Verified live</h3>
+        <ul>
+          <li>Canonical, sitemap, robots.txt and hreflang on <code>https://calendar.marketing</code> (C1)</li>
+          <li>110 Arabic URLs on <code>/ar/</code> with <code>lang="ar" dir="rtl"</code> and hreflang (C4, H1)</li>
+          <li>Images served as WebP at 19–33&nbsp;KB (C2)</li>
+          <li>og:image on all 220 pages (H2); real 404s (H3); www 301 (H4)</li>
+          <li>CDN cache HIT with TTFB 0.24–0.34&nbsp;s (H6); single-brand titles (H7)</li>
+          <li>Security headers, pagination canonicals, sitemap lastmod, meta descriptions, llms.txt</li>
+        </ul>
+      </div>
+      <div class="summary-card critical">
+        <h3><span class="sev sev-critical">Open</span> Still to do</h3>
+        <ul>
+          <li><b>C5</b> Restore the blog posts and redirect their old URLs</li>
+          <li><b>H8</b> GPTBot still gets 429, and browsers still get the 403 challenge</li>
+          <li><b>H5</b> Add Organization schema, plus schema on the homepage and hubs</li>
+          <li><b>L5</b> Replace the Conferences / Exhibitions / Workshops / Networking chips</li>
+          <li><b>M9</b> favicon.ico, apple-touch-icon, manifest · <b>L1</b> social links · <b>L2</b> alt text</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <section id="summary">
-    <div class="section-head"><h2>Executive summary</h2></div>
+    <div class="section-head"><h2>Executive summary</h2><span class="score-tag">first audit · 28 Sep</span></div>
     <div class="summary-grid">
       <div class="summary-card critical">
         <h3><span class="sev sev-critical">Critical</span> Top 5 issues</h3>
@@ -275,6 +333,7 @@
 
     <div class="finding" data-fix="C1">
       <div class="finding-head"><span class="fid">C1</span><span class="sev sev-critical">Critical</span><h3>Canonical, sitemap, robots.txt and hreflang point to a domain that doesn't exist</h3></div>
+      <div class="recheck fixed"><span class="rc-tag">Fixed · 5 Oct</span><span>Canonical is <code>https://calendar.marketing</code>, the robots Sitemap line is correct, and 0 of 220 sitemap URLs use the misspelled domain.</span></div>
       <p>Every page's canonical uses <code>http://calender.marketing</code>: misspelled (calender) and on http. That domain has no DNS record. The same host appears in all 122 sitemap <code>&lt;loc&gt;</code> entries, the robots.txt Sitemap line, <code>og:url</code>, hreflang links and JSON-LD <code>url</code> fields. Google is being told the preferred copy of every page is a URL it cannot fetch.</p>
       <div class="evidence"><span class="ev-label">curl https://calendar.marketing/ · robots.txt · sitemap.xml · nslookup</span><code>&lt;link rel="canonical" href="http://calender.marketing"/&gt;
 Sitemap: http://calender.marketing/sitemap.xml
@@ -285,6 +344,7 @@ nslookup calender.marketing  →  Non-existent domain</code></div>
 
     <div class="finding" data-fix="C4">
       <div class="finding-head"><span class="fid">C4</span><span class="sev sev-critical">Critical</span><h3>The Arabic version is invisible to search engines</h3></div>
+      <div class="recheck fixed"><span class="rc-tag">Fixed · 5 Oct</span><span>110 Arabic URLs live under <code>/ar/</code> with <code>lang="ar" dir="rtl"</code>, self-referencing canonicals, and en / ar / x-default hreflang on all 220 pages.</span></div>
       <p>The header's "<bdi dir="rtl" lang="ar">العربية</bdi>" button sets a <code>mmc-locale=ar</code> cookie and re-renders the same URL in Arabic (<code>lang="ar" dir="rtl"</code>, Arabic title and H1). Crawlers don't keep cookies, so every URL is indexed in English only. Arabic searches in Saudi, Egypt and the Gulf, likely the site's largest audience, can't find these pages.</p>
       <div class="evidence"><span class="ev-label">curl /events/ramadan with and without the cookie</span><code>no cookie:          &lt;html lang="en" dir="ltr"&gt;  Ramadan Marketing Campaign Ideas 2027 …
 Cookie mmc-locale=ar: &lt;html lang="ar" dir="rtl"&gt;  <bdi dir="rtl">أفكار حملات شهر رمضان 2027</bdi> …
@@ -294,6 +354,7 @@ canonical (both):   http://calender.marketing/events/ramadan   ← same URL, no 
 
     <div class="finding" data-fix="H3">
       <div class="finding-head"><span class="fid">H3</span><span class="sev sev-high">High</span><h3>Soft-404s on event and country routes</h3></div>
+      <div class="recheck fixed"><span class="rc-tag">Fixed · 5 Oct</span><span><code>/events/not-a-real-event-xyz</code> and <code>/countries/atlantis</code> both return 404.</span></div>
       <p>Any slug under /events/ or /countries/ returns HTTP 200 with the homepage title and no H1. A <code>noindex</code> limits the damage, but Search Console still reports these as soft 404s, and a deleted event's old URL will keep answering 200.</p>
       <div class="evidence"><span class="ev-label">curl -o /dev/null -w "%{http_code}"</span><code>/events/not-a-real-event-xyz   200   ← title = homepage, robots: noindex
 /countries/atlantis            200
@@ -303,6 +364,7 @@ canonical (both):   http://calender.marketing/events/ramadan   ← same URL, no 
 
     <div class="finding" data-fix="H4">
       <div class="finding-head"><span class="fid">H4</span><span class="sev sev-high">High</span><h3>www serves a full duplicate instead of redirecting</h3></div>
+      <div class="recheck fixed"><span class="rc-tag">Fixed · 5 Oct</span><span>www now 301-redirects to <code>https://calendar.marketing/</code>.</span></div>
       <p><code>https://www.calendar.marketing/</code> returns 200 with the full site. The canonical fix (C1) helps, but one host should be enforced by the server.</p>
       <div class="evidence"><span class="ev-label">curl -I https://www.calendar.marketing/</span><code>HTTP/1.1 200 OK   ← no Location header</code></div>
       <div class="fix"><b>Fix →</b> 301 <code>www.calendar.marketing/*</code> → <code>https://calendar.marketing/*</code> in hPanel, or with a <code>redirects()</code> rule using <code>has: [{type:'host', value:'www.calendar.marketing'}]</code>.</div>
@@ -310,18 +372,21 @@ canonical (both):   http://calender.marketing/events/ramadan   ← same URL, no 
 
     <div class="finding" data-fix="M1">
       <div class="finding-head"><span class="fid">M1</span><span class="sev sev-medium">Medium</span><h3>Paginated pages canonicalise to page 1</h3></div>
+      <div class="recheck fixed"><span class="rc-tag">Fixed · 5 Oct</span><span><code>/events?page=2</code> is self-canonical.</span></div>
       <p><code>/events?page=2</code> and <code>?page=3</code> declare <code>/events</code> as canonical, which tells Google to drop the events listed only on those pages.</p>
       <div class="fix"><b>Fix →</b> Paginated URLs self-canonicalise (<code>/events?page=2</code>). Filter parameters like <code>?importance=</code> and <code>?range=</code> keep pointing at the base URL.</div>
     </div>
 
     <div class="finding" data-fix="M2">
       <div class="finding-head"><span class="fid">M2</span><span class="sev sev-medium">Medium</span><h3>Uppercase blog slug, and both casings return 200</h3></div>
+      <div class="recheck fixed"><span class="rc-tag">Fixed · 5 Oct</span><span><code>/en/blog/*</code> now 301s to <code>/blog/*</code>. The posts themselves are missing (C5).</span></div>
       <p><code>/en/blog/Saudi-National-Day-marketing-ideas</code> and its lowercase form both load.</p>
       <div class="fix"><b>Fix →</b> Force lowercase slugs on save in the CMS, and 301 any mixed-case URL to lowercase in middleware.</div>
     </div>
 
     <div class="finding" data-fix="M4">
       <div class="finding-head"><span class="fid">M4</span><span class="sev sev-medium">Medium</span><h3>Sitemap lastmod is the request time, not the edit time</h3></div>
+      <div class="recheck fixed"><span class="rc-tag">Fixed · 5 Oct</span><span>lastmod varies per URL, and changefreq/priority are removed.</span></div>
       <p>Static pages report <code>lastmod</code> = the moment the sitemap was fetched, so it changes on every request. Google ignores lastmod once it proves unreliable.</p>
       <div class="evidence"><span class="ev-label">sitemap.xml fetched 11:45:01 UTC</span><code>12 URLs  &lt;lastmod&gt;2026-09-28T11:45:01.214Z&lt;/lastmod&gt;</code></div>
       <div class="fix"><b>Fix →</b> Use each record's real <code>updatedAt</code>, and fixed dates for static pages. <code>changefreq</code> and <code>priority</code> are ignored by Google and can go.</div>
@@ -329,6 +394,7 @@ canonical (both):   http://calender.marketing/events/ramadan   ← same URL, no 
 
     <div class="finding" data-fix="M8">
       <div class="finding-head"><span class="fid">M8</span><span class="sev sev-medium">Medium</span><h3>Missing security headers; framework version exposed</h3></div>
+      <div class="recheck fixed"><span class="rc-tag">Fixed · 5 Oct</span><span>HSTS, nosniff, X-Frame-Options, Referrer-Policy and Permissions-Policy are present, and X-Powered-By is gone.</span></div>
       <div class="evidence"><span class="ev-label">curl -I https://calendar.marketing/</span><code>x-powered-by: Next.js
 content-security-policy: upgrade-insecure-requests
 ← no HSTS · no X-Content-Type-Options · no X-Frame-Options · no Referrer-Policy</code></div>
@@ -350,6 +416,7 @@ content-security-policy: upgrade-insecure-requests
 
     <div class="finding" data-fix="C3">
       <div class="finding-head"><span class="fid">C3</span><span class="sev sev-critical">Critical</span><h3>"test" posts are live, and one Arabic post is an English copy</h3></div>
+      <div class="recheck fixed"><span class="rc-tag">Fixed · 5 Oct</span><span>The test posts are gone, but the rest of the blog went with them (C5).</span></div>
       <p><code>/en/blog/test</code> and <code>/ar/blog/test</code> are published with the title "test" and no description, listed in the sitemap and linked from /blog. The body is a real article about restaurant marketing in Egypt. Separately, <code>/ar/blog/Saudi-National-Day-marketing-ideas</code> is the English article under an <code>ar</code> hreflang, with no description.</p>
       <div class="evidence"><span class="ev-label">&lt;title&gt; · published_time</span><code>test | MENA Marketing Calendar        2026-09-28T11:24:53Z
 Saudi National Day Marketing Ideas: 7 Strategic …   ← on the /ar/ URL</code></div>
@@ -358,20 +425,29 @@ Saudi National Day Marketing Ideas: 7 Strategic …   ← on the /ar/ URL</code>
 
     <div class="finding" data-fix="M3">
       <div class="finding-head"><span class="fid">M3</span><span class="sev sev-medium">Medium</span><h3>Blog URL hierarchy has dead levels</h3></div>
+      <div class="recheck fixed"><span class="rc-tag">Fixed · 5 Oct</span><span><code>/ar/blog</code> is a real Arabic index, and <code>/en/blog</code> 301s to <code>/blog</code>.</span></div>
       <p>The index lives at <code>/blog</code> but posts live at <code>/en/blog/…</code> and <code>/ar/blog/…</code>. <code>/en/blog</code>, <code>/ar/blog</code>, <code>/en</code> and <code>/ar</code> all return 404, and there is no Arabic blog index.</p>
       <div class="fix"><b>Fix →</b> Build <code>/ar/blog</code> as a real Arabic index and 301 <code>/en/blog</code> → <code>/blog</code>, so every level of the path resolves.</div>
     </div>
 
     <div class="finding" data-fix="M5">
       <div class="finding-head"><span class="fid">M5</span><span class="sev sev-medium">Medium</span><h3>Event pages don't link to their country, industry or blog pages</h3></div>
+      <div class="recheck fixed"><span class="rc-tag">Fixed · 5 Oct</span><span>Event pages now link to 15 country and industry pages. There are no blog links yet because the blog is empty.</span></div>
       <p><code>/events/ramadan</code> (2,261 words) has zero links to /countries/* or /industries/* and four links to other events. Blog posts aren't linked from events either.</p>
       <div class="fix"><b>Fix →</b> Make the country and industry chips on each event real links (<code>/countries/saudi-arabia</code>, <code>/industries/fnb</code>), and add a "Related articles" block linking matching blog posts.</div>
     </div>
 
     <div class="finding" data-fix="M6">
       <div class="finding-head"><span class="fid">M6</span><span class="sev sev-medium">Medium</span><h3>Thin hub pages</h3></div>
+      <div class="recheck fixed"><span class="rc-tag">Fixed · 5 Oct</span><span>The /calendar H1 is "MENA Marketing Calendar 2026: Every Event by Month", and hub pages are now 269–344 words.</span></div>
       <div class="evidence"><span class="ev-label">body word count</span><code>/countries   201     /industries  202     /calendar  242   (H1 = "September 2026")</code></div>
       <div class="fix"><b>Fix →</b> Add a 150–250 word intro to each hub, and give /calendar a descriptive H1 such as "MENA Marketing Calendar 2026: Every Event by Month".</div>
+    </div>
+
+    <div class="finding" data-fix="L5">
+      <div class="finding-head"><span class="fid">L5</span><span class="sev sev-low">Low · new</span><h3>Homepage filter chips don't match the site's events</h3></div>
+      <p>The Upcoming Highlights filters are Conferences, Exhibitions, Workshops and Networking. The site has no events of those types, so every chip leads to an empty list. The subtitle still says "conferences, exhibitions".</p>
+      <div class="fix"><b>Fix →</b> Use the categories <code>/events</code> already supports: <b>All Events · Must-Use · National Days · Shopping Seasons · Religious Occasions</b> (<code>must-use-events</code>, <code>national-days</code>, <code>shopping-seasons</code>, <code>religious-occasions</code>). Point "View all events" at <code>/events?category=…</code> for the active chip.</div>
     </div>
   </section>
 
@@ -389,6 +465,7 @@ Saudi National Day Marketing Ideas: 7 Strategic …   ← on the /ar/ URL</code>
 
     <div class="finding" data-fix="H7">
       <div class="finding-head"><span class="fid">H7</span><span class="sev sev-high">High</span><h3>Brand name doubled in 66 event titles</h3></div>
+      <div class="recheck fixed"><span class="rc-tag">Fixed · 5 Oct</span><span>"Ramadan Campaign Ideas 2027 | MENA Marketing Calendar". 169 of 220 titles are still over 60 characters, mostly Arabic hub titles.</span></div>
       <p>The event page adds the brand, then the layout's title template adds it again. 113 of 122 titles exceed 60 characters and get truncated in results.</p>
       <div class="evidence"><span class="ev-label">&lt;title&gt; — /events/ramadan (89 chars)</span><code>Ramadan Marketing Campaign Ideas 2027 | MENA Marketing Calendar | MENA Marketing Calendar</code></div>
       <div class="fix"><b>Fix →</b> Return the title without the brand from the event <code>generateMetadata</code> and let <code>template: '%s | MENA Marketing Calendar'</code> add it once. Shorten hub titles (/countries is 90 characters) to 50–60.</div>
@@ -396,18 +473,21 @@ Saudi National Day Marketing Ideas: 7 Strategic …   ← on the /ar/ URL</code>
 
     <div class="finding" data-fix="H1">
       <div class="finding-head"><span class="fid">H1</span><span class="sev sev-high">High</span><h3>Arabic blog posts declare lang="en" dir="ltr"</h3></div>
+      <div class="recheck fixed"><span class="rc-tag">Fixed · 5 Oct</span><span>All 110 Arabic pages declare <code>lang="ar" dir="rtl"</code>.</span></div>
       <p>All <code>/ar/blog/*</code> URLs ship <code>&lt;html lang="en" dir="ltr"&gt;</code> around Arabic content, which misleads language detection and screen readers.</p>
       <div class="fix"><b>Fix →</b> Set <code>lang</code> and <code>dir</code> on <code>&lt;html&gt;</code> from the route's locale in the <code>[locale]</code> layout.</div>
     </div>
 
     <div class="finding" data-fix="H2">
       <div class="finding-head"><span class="fid">H2</span><span class="sev sev-high">High</span><h3>No og:image on any page</h3></div>
+      <div class="recheck fixed"><span class="rc-tag">Fixed · 5 Oct</span><span>og:image is on 220 of 220 pages, with a generated PNG per event at <code>/og/events/&lt;slug&gt;</code> (about 90 KB).</span></div>
       <p>0 of 122 pages have <code>og:image</code> or <code>twitter:image</code>, although <code>twitter:card</code> is set to <code>summary_large_image</code>. Links shared on LinkedIn, WhatsApp and X show no preview image, which matters for an audience of marketers who share links. 12 core pages also lack <code>og:url</code>.</p>
       <div class="fix"><b>Fix →</b> Add a default <code>app/opengraph-image.png</code> (1200×630), plus a generated <code>opengraph-image.tsx</code> per event that shows the event name and date.</div>
     </div>
 
     <div class="finding" data-fix="M7">
       <div class="finding-head"><span class="fid">M7</span><span class="sev sev-medium">Medium</span><h3>Missing, duplicate and over-long meta descriptions</h3></div>
+      <div class="recheck fixed"><span class="rc-tag">Fixed · 5 Oct</span><span>0 missing and 0 duplicate descriptions across 220 pages.</span></div>
       <div class="evidence"><span class="ev-label">across 122 pages</span><code>missing      3   (both test posts, /ar/blog/Saudi-National-Day-…)
 duplicate    4   (/, /about, /privacy, /terms share one description)
 &gt;160 chars   8   (longest: /events/uae-national-day, 193)</code></div>
@@ -416,18 +496,21 @@ duplicate    4   (/, /about, /privacy, /terms share one description)
 
     <div class="finding" data-fix="M9">
       <div class="finding-head"><span class="fid">M9</span><span class="sev sev-medium">Medium</span><h3>No favicon.ico, apple-touch-icon or web manifest</h3></div>
+      <div class="recheck open"><span class="rc-tag">Still open · 5 Oct</span><span><code>/favicon.ico</code>, <code>/apple-touch-icon.png</code> and <code>/manifest.webmanifest</code> still return 404.</span></div>
       <p>Only <code>/icon.svg</code> exists. <code>/favicon.ico</code>, <code>/apple-touch-icon.png</code> and <code>/manifest.webmanifest</code> all return 404.</p>
       <div class="fix"><b>Fix →</b> Add <code>app/favicon.ico</code> (48×48), <code>app/apple-icon.png</code> (180×180) and <code>app/manifest.ts</code>.</div>
     </div>
 
     <div class="finding" data-fix="L1">
       <div class="finding-head"><span class="fid">L1</span><span class="sev sev-low">Low</span><h3>Footer social links go to platform home pages</h3></div>
+      <div class="recheck open"><span class="rc-tag">Still open · 5 Oct</span><span>The footer still links to <code>x.com</code>, <code>instagram.com</code> and <code>linkedin.com</code>.</span></div>
       <p>The icons link to <code>https://x.com</code>, <code>https://instagram.com</code> and <code>https://linkedin.com</code> rather than the brand's profiles.</p>
       <div class="fix"><b>Fix →</b> Use the real profile URLs, and reuse them in Organization <code>sameAs</code> (H5).</div>
     </div>
 
     <div class="finding" data-fix="L3">
       <div class="finding-head"><span class="fid">L3</span><span class="sev sev-low">Low</span><h3>Pagination links have no accessible name</h3></div>
+      <div class="recheck fixed"><span class="rc-tag">Fixed · 5 Oct</span><span>Pagination has <code>aria-label="Next page"</code>.</span></div>
       <p>The next-page link's only text is "›".</p>
       <div class="fix"><b>Fix →</b> Add <code>aria-label="Next page"</code> and <code>aria-label="Previous page"</code>.</div>
     </div>
@@ -446,12 +529,14 @@ duplicate    4   (/, /about, /privacy, /terms share one description)
 
     <div class="finding" data-fix="H5">
       <div class="finding-head"><span class="fid">H5</span><span class="sev sev-high">High</span><h3>No Organization, WebSite or BreadcrumbList schema</h3></div>
+      <div class="recheck partial"><span class="rc-tag">Partly done · 5 Oct</span><span>WebPage, WebSite and BreadcrumbList are on 132 pages. There is still no Organization, and 88 pages (homepage, calendar, events, countries and industries hubs) have no JSON-LD.</span></div>
       <p>The homepage and all country and industry pages (44 URLs) have no structured data at all. Pages show a visible breadcrumb but no <code>BreadcrumbList</code>.</p>
       <div class="fix"><b>Fix →</b> Add one <code>@graph</code> with Organization (name, url, logo, <code>sameAs</code>) and WebSite (<code>inLanguage: ["en","ar"]</code>) in the root layout, plus BreadcrumbList wherever the breadcrumb renders.</div>
     </div>
 
     <div class="finding" data-fix="H9">
       <div class="finding-head"><span class="fid">H9</span><span class="sev sev-high">High</span><h3>Event markup is invalid and applied to non-events</h3></div>
+      <div class="recheck fixed"><span class="rc-tag">Fixed · 5 Oct</span><span>The invalid Event markup is removed, and event pages use WebPage.</span></div>
       <p>All 66 Event blocks use <code>addressCountry: "MENA"</code>, which is not an ISO country code, and have no <code>image</code>, <code>eventStatus</code> or <code>organizer</code>. Google's event rich results are meant for attendable events; national days and religious seasons such as Ramadan don't qualify.</p>
       <div class="evidence"><span class="ev-label">JSON-LD — /events/ramadan</span><code>"location":{"@type":"Place","name":"Middle East &amp; North Africa",
   "address":{"@type":"PostalAddress","addressCountry":"MENA"}}</code></div>
@@ -460,6 +545,7 @@ duplicate    4   (/, /about, /privacy, /terms share one description)
 
     <div class="finding" data-fix="M11">
       <div class="finding-head"><span class="fid">M11</span><span class="sev sev-medium">Medium</span><h3>Article schema lacks author, publisher and image</h3></div>
+      <div class="recheck partial"><span class="rc-tag">Blocked · 5 Oct</span><span>There are no blog posts to mark up until C5 is fixed.</span></div>
       <div class="evidence"><span class="ev-label">JSON-LD — /en/blog/ramadan-campaign-checklist</span><code>{"@type":"Article","headline":"…","datePublished":"…","dateModified":"…",
  "inLanguage":"en","mainEntityOfPage":"http://calender.marketing/…"}
 ← no author · no publisher · no image</code></div>
@@ -493,6 +579,7 @@ duplicate    4   (/, /about, /privacy, /terms share one description)
 
     <div class="finding" data-fix="H6">
       <div class="finding-head"><span class="fid">H6</span><span class="sev sev-high">High</span><h3>Every page is rendered per request and never cached at the edge</h3></div>
+      <div class="recheck fixed"><span class="rc-tag">Fixed · 5 Oct</span><span><code>x-nextjs-cache: HIT</code>, <code>s-maxage=300</code>, CDN HIT. TTFB is 0.24–0.34 s (it was up to 3.2 s).</span></div>
       <p>All HTML is served <code>no-store</code> and the CDN reports <code>DYNAMIC</code>, so each visit rebuilds the page. TTFB was 300–500 ms here and reached 3.2 s during the 122-URL crawl. Event, country and industry content rarely changes.</p>
       <div class="evidence"><span class="ev-label">curl -I https://calendar.marketing/events/ramadan</span><code>Cache-Control: private, no-cache, no-store, max-age=0, must-revalidate
 x-hcdn-cache-status: DYNAMIC</code></div>
@@ -501,6 +588,7 @@ x-hcdn-cache-status: DYNAMIC</code></div>
 
     <div class="finding" data-fix="M10">
       <div class="finding-head"><span class="fid">M10</span><span class="sev sev-medium">Medium</span><h3>Heavy homepage HTML</h3></div>
+      <div class="recheck partial"><span class="rc-tag">Partly done · 5 Oct</span><span>Homepage HTML went from 362 KB to 257 KB.</span></div>
       <p>The homepage HTML is 362 KB, including about 148 KB of inline RSC payload, with 2,573 DOM nodes and 90 H3s. Event data is sent twice: once as HTML and once as hydration JSON.</p>
       <div class="fix"><b>Fix →</b> Keep event cards as Server Components, pass client components only the fields they need (id, name, date), and show fewer cards on the homepage with a "View all" link.</div>
     </div>
@@ -519,6 +607,7 @@ x-hcdn-cache-status: DYNAMIC</code></div>
 
     <div class="finding" data-fix="H8">
       <div class="finding-head"><span class="fid">H8</span><span class="sev sev-high">High</span><h3>Hostinger's CDN blocks GPTBot and challenges first-time browsers</h3></div>
+      <div class="recheck open"><span class="rc-tag">Still open · 5 Oct</span><span>GPTBot still gets 429, and a browser-like request still gets the 403 challenge page.</span></div>
       <p>robots.txt allows every bot, but the CDN answers GPTBot with 429 every time. Separately, a fresh Chrome session first receives a 403 challenge page (with <code>noindex,nofollow</code> and a meta refresh) and reloads twice before the real page appears. That extra round trip lands on real visitors' first load.</p>
       <div class="evidence"><span class="ev-label">curl -A "&lt;bot&gt;" https://calendar.marketing/</span><code>GPTBot/1.2        429   429   ← blocked, both attempts
 OAI-SearchBot     200
@@ -529,6 +618,7 @@ Chrome (headless) 403 → JS challenge → reload → 200</code></div>
 
     <div class="finding" data-fix="L4">
       <div class="finding-head"><span class="fid">L4</span><span class="sev sev-low">Low</span><h3>No llms.txt (optional)</h3></div>
+      <div class="recheck fixed"><span class="rc-tag">Fixed · 5 Oct</span><span><code>/llms.txt</code> returns 200.</span></div>
       <p><code>/llms.txt</code> returns 404. Google ignores it, but some AI tools read it as a map of a site's key pages.</p>
       <div class="fix"><b>Fix →</b> Optional: publish a short <code>llms.txt</code> listing the calendar, the events library, country and industry hubs, and the blog.</div>
     </div>
@@ -547,6 +637,7 @@ Chrome (headless) 403 → JS challenge → reload → 200</code></div>
 
     <div class="finding" data-fix="C2">
       <div class="finding-head"><span class="fid">C2</span><span class="sev sev-critical">Critical</span><h3>26 MB of PNGs, and the image optimizer passes them through untouched</h3></div>
+      <div class="recheck fixed"><span class="rc-tag">Fixed · 5 Oct</span><span><code>w=640</code> returns <code>image/webp</code> at 19–33 KB, and source PNGs are 157–270 KB (they were 2.3 MB).</span></div>
       <p>The 15 industry images are 1.5–2.3 MB PNGs. <code>/_next/image</code> returns the same 2.29 MB PNG whether it's asked for 128 px or 3840 px, and never converts to WebP or AVIF. The homepage pulls all 15 as you scroll, and each event page loads about 6 (10–13 MB).</p>
       <div class="evidence"><span class="ev-label">curl /_next/image?url=/images/industries/fnb.png&amp;w=… (Accept: avif, webp)</span><code>w=128    image/png   2,293,941 bytes
 w=640    image/png   2,293,941 bytes
@@ -557,6 +648,7 @@ w=3840   image/png   2,293,941 bytes
 
     <div class="finding" data-fix="L2">
       <div class="finding-head"><span class="fid">L2</span><span class="sev sev-low">Low</span><h3>Industry images have empty alt text</h3></div>
+      <div class="recheck open"><span class="rc-tag">Still open · 5 Oct</span><span>All 2,106 images across the 220 pages still have <code>alt=""</code>.</span></div>
       <p>All 15 industry images use <code>alt=""</code>. They represent content (the industry), so descriptive alt text helps Google Images and screen-reader users.</p>
       <div class="fix"><b>Fix →</b> Use alt text such as <code>alt="F&amp;B brand Ramadan campaign"</code>, built from the industry name.</div>
     </div>
@@ -583,6 +675,8 @@ w=3840   image/png   2,293,941 bytes
       <div class="phase">
         <div><div class="phase-title">Phase 1 — Quick critical</div><div class="phase-time">Week 1</div></div>
         <ul>
+          <li><label><input type="checkbox" data-fix="C5"><span><span class="pid">C5</span> Restore blog posts + 301 old URLs</span></label></li>
+          <li><label><input type="checkbox" data-fix="L5"><span><span class="pid">L5</span> Homepage filter chips</span></label></li>
           <li><label><input type="checkbox" data-fix="C1"><span><span class="pid">C1</span> Fix site URL: canonical, sitemap, robots, hreflang</span></label></li>
           <li><label><input type="checkbox" data-fix="C3"><span><span class="pid">C3</span> Remove test posts; fix the Arabic Saudi post</span></label></li>
           <li><label><input type="checkbox" data-fix="H7"><span><span class="pid">H7</span> Remove the doubled brand from event titles</span></label></li>
@@ -648,7 +742,7 @@ w=3840   image/png   2,293,941 bytes
 (function(){
   var CATS = [
     {key:'tech',    name:'Technical SEO',       weight:22, base:32},
-    {key:'content', name:'Content Quality',     weight:23, base:55},
+    {key:'content', name:'Content Quality',     weight:23, base:45},   // 55 at first audit, minus 10 for the emptied blog (C5)
     {key:'onpage',  name:'On-Page SEO',         weight:20, base:50},
     {key:'schema',  name:'Schema',              weight:10, base:35},
     {key:'perf',    name:'Performance',         weight:10, base:60},
@@ -661,6 +755,7 @@ w=3840   image/png   2,293,941 bytes
     C2:{sev:'critical', pts:{images:50, perf:18}},
     C3:{sev:'critical', pts:{content:10}},
     C4:{sev:'critical', pts:{tech:8, content:15, ai:5}},
+    C5:{sev:'critical', pts:{content:10}},
     H1:{sev:'high', pts:{onpage:10}},
     H2:{sev:'high', pts:{onpage:8, images:8}},
     H3:{sev:'high', pts:{tech:6}},
@@ -684,15 +779,24 @@ w=3840   image/png   2,293,941 bytes
     L1:{sev:'low', pts:{onpage:2}},
     L2:{sev:'low', pts:{images:12}},
     L3:{sev:'low', pts:{onpage:2}},
-    L4:{sev:'low', pts:{ai:3}}
+    L4:{sev:'low', pts:{ai:3}},
+    L5:{sev:'low', pts:{content:2}}
   };
+  var PARTIAL = {H5:{schema:12}};   // WebSite + BreadcrumbList live on 132 pages
   var MONITOR = ['P1','P2','P3','P4','P5'];
+  // Verified live on the 5 Oct 2026 re-audit. A viewer's own ticks override these.
+  var VERIFIED = ['C1','C2','C3','C4','H1','H2','H3','H4','H6','H7','H9','M1','M2','M3','M4','M5','M6','M7','M8','L3','L4'];
   var state = {};           // id -> true/false
   var mode = 'loading', readOnly = false;
 
   function catScores(done){
     var s = {};
     CATS.forEach(function(c){ s[c.key] = c.base; });
+    // Work already live on a partly-done fix, counted until the fix is ticked.
+    Object.keys(PARTIAL).forEach(function(id){
+      if (done[id]) return;
+      Object.keys(PARTIAL[id]).forEach(function(k){ s[k] += PARTIAL[id][k]; });
+    });
     Object.keys(FIXES).forEach(function(id){
       if (!done[id]) return;
       var p = FIXES[id].pts;
@@ -707,7 +811,7 @@ w=3840   image/png   2,293,941 bytes
   }
   function tone(v){ return v < 50 ? 'var(--critical)' : v < 70 ? 'var(--warning)' : 'var(--good)'; }
   var allDone = {}; Object.keys(FIXES).forEach(function(id){ allDone[id] = true; });
-  var BASELINE = overall(catScores({})), POTENTIAL = overall(catScores(allDone));
+  var BASELINE = 46, POTENTIAL = overall(catScores(allDone));   // 46 = first audit, 28 Sep
 
   // category rows (built once)
   var grid = document.getElementById('catGrid');
@@ -725,7 +829,8 @@ w=3840   image/png   2,293,941 bytes
       var v = s[c.key], bar = document.querySelector('[data-bar="' + c.key + '"]');
       bar.style.width = v + '%'; bar.style.background = tone(v);
       var num = document.querySelector('[data-num="' + c.key + '"]');
-      num.innerHTML = v + (v !== c.base ? ' <small>was ' + c.base + '</small>' : '');
+      var first = c.key === 'content' ? 55 : c.base;
+      num.innerHTML = v + (v !== first ? ' <small>was ' + first + '</small>' : '');
       var tag = document.querySelector('[data-cat-score="' + c.key + '"]');
       if (tag) tag.textContent = v + ' / 100';
     });
@@ -766,13 +871,13 @@ w=3840   image/png   2,293,941 bytes
     head.appendChild(lab);
   });
 
-  function lsGet(id){ try { return localStorage.getItem('cm-audit-' + id) === '1'; } catch(e){ return false; } }
+  function lsGet(id){ try { var v = localStorage.getItem('cm-audit-' + id); return v === null ? null : v === '1'; } catch(e){ return null; } }
   function lsSet(id, v){ try { localStorage.setItem('cm-audit-' + id, v ? '1' : '0'); } catch(e){} }
   function setSync(msg){ document.getElementById('syncState').textContent = msg; document.getElementById('syncNote').textContent = msg; }
 
   function useLocal(){
     mode = 'local';
-    Object.keys(FIXES).concat(MONITOR).forEach(function(id){ state[id] = lsGet(id); });
+    Object.keys(FIXES).concat(MONITOR).forEach(function(id){ var v = lsGet(id); state[id] = v === null ? VERIFIED.indexOf(id) !== -1 : v; });
     setSync('Progress saved in this browser only');
     render();
   }
