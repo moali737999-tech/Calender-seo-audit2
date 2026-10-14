@@ -187,11 +187,11 @@
 <div class="wrap">
 
   <header class="hero">
-    <div class="eyebrow">SEO + TECHNICAL AUDIT <span class="dot"></span> calendar.marketing <span class="dot"></span> Re-audit 5 Oct 2026 <span class="dot"></span> First audit 28 Sep</div>
+    <div class="eyebrow">SEO + TECHNICAL AUDIT <span class="dot"></span> calendar.marketing <span class="dot"></span> Re-audit 14 Oct 2026 <span class="dot"></span> First audit 28 Sep</div>
     <div class="hero-grid">
       <div class="hero-copy">
-        <h1>21 of 28 fixes shipped in a week. The blog disappeared along the way.</h1>
-        <p class="muted">The re-audit crawled all 220 sitemap URLs (110 English, 110 Arabic). The wrong-domain canonicals are gone, the Arabic site is now indexable on its own <code>/ar/</code> URLs, images went from 2.3&nbsp;MB to about 30&nbsp;KB, and pages are served from the CDN cache. One new critical problem: <code>/blog</code> and <code>/ar/blog</code> are empty and every former article URL returns 404. Tick each remaining fix as it ships and the score updates.</p>
+        <h1>24 of 30 fixes shipped. The blog is still empty.</h1>
+        <p class="muted">The 14 October re-audit crawled all 220 sitemap URLs (110 English, 110 Arabic), and every one returns 200 with a self-referencing canonical, the right language and hreflang. Since 5 October the site gained Organization and WebSite schema, CollectionPage markup on its hubs, a favicon, an apple touch icon and a web manifest, and the homepage filters now match the site's event categories. The blog has been empty since early October, which blocks the October article plan. Tick each remaining fix as it ships and the score updates.</p>
         <div class="meta-chips">
           <span class="chip">MENA marketing calendar</span>
           <span class="chip">Next.js on Hostinger</span>
@@ -203,8 +203,8 @@
         <svg width="176" height="106" viewBox="0 0 200 120" role="img" aria-labelledby="gaugeTitle">
           <title id="gaugeTitle">Health score</title>
           <path d="M20,100 A80,80 0 0 1 180,100" fill="none" stroke="var(--border)" stroke-width="16" stroke-linecap="round"/>
-          <path id="gaugeArc" d="M20,100 A80,80 0 0 1 180,100" fill="none" stroke="var(--good)" stroke-width="16" stroke-linecap="round" stroke-dasharray="208.6 400"/>
-          <text id="gaugeNum" x="100" y="92" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="40" fill="var(--text)">83</text>
+          <path id="gaugeArc" d="M20,100 A80,80 0 0 1 180,100" fill="none" stroke="var(--good)" stroke-width="16" stroke-linecap="round" stroke-dasharray="216.1 400"/>
+          <text id="gaugeNum" x="100" y="92" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="40" fill="var(--text)">86</text>
         </svg>
         <span class="gauge-label">Health score / 100</span>
         <span class="gauge-sub" id="gaugeSub">Up from 46 · 94 when all fixes ship</span>
@@ -214,20 +214,20 @@
 
   <div class="progress-card" aria-live="polite">
     <div class="progress-top">
-      <strong id="progText">21 of 30 fixes done</strong>
+      <strong id="progText">24 of 30 fixes done</strong>
       <span class="mono" id="syncState">Loading saved progress…</span>
     </div>
     <div class="bartrack"><div class="barfill" id="progBar" style="width:0%; background:var(--good);"></div></div>
     <div class="sev-split" id="sevSplit">
       <span><b style="color:var(--critical)">Critical</b> 4/5</span>
-      <span><b style="color:var(--serious)">High</b> 7/9</span>
-      <span><b style="color:var(--warning)">Medium</b> 8/11</span>
-      <span><b style="color:var(--good)">Low</b> 2/5</span>
+      <span><b style="color:var(--serious)">High</b> 8/9</span>
+      <span><b style="color:var(--warning)">Medium</b> 9/11</span>
+      <span><b style="color:var(--good)">Low</b> 3/5</span>
     </div>
   </div>
 
   <nav class="toc">
-    <a href="#reaudit">Re-audit 5 Oct</a>
+    <a href="#reaudit">Re-audit 14 Oct</a>
     <a href="#summary">Summary</a>
     <a href="#scores">Category scores</a>
     <a href="#technical">Technical</a>
@@ -242,18 +242,19 @@
   </nav>
 
   <section id="reaudit">
-    <div class="section-head"><h2>Re-audit — 5 Oct 2026</h2><span class="score-tag">46 → 83 / 100</span></div>
+    <div class="section-head"><h2>Re-audit: 14 Oct 2026</h2><span class="score-tag">46 → 83 → 86 / 100</span></div>
     <div class="ra-stats">
-      <div class="ra-stat"><b style="color:var(--good)">21</b><span>fixed and verified live</span></div>
-      <div class="ra-stat"><b style="color:var(--warning)">3</b><span>partly done or blocked (H5, M10, M11)</span></div>
-      <div class="ra-stat"><b style="color:var(--critical)">4</b><span>still open (H8, M9, L1, L2)</span></div>
-      <div class="ra-stat"><b style="color:var(--critical)">2</b><span>new (C5 blog, L5 filters)</span></div>
+      <div class="ra-stat"><b style="color:var(--good)">24</b><span>fixed and verified live</span></div>
+      <div class="ra-stat"><b style="color:var(--good)">3</b><span>fixed since 5 Oct (H5, M9, L5)</span></div>
+      <div class="ra-stat"><b style="color:var(--warning)">2</b><span>partly done or blocked (M10, M11)</span></div>
+      <div class="ra-stat"><b style="color:var(--critical)">4</b><span>still open (C5, H8, L1, L2)</span></div>
     </div>
 
     <div class="finding" data-fix="C5">
-      <div class="finding-head"><span class="fid">C5</span><span class="sev sev-critical">Critical · new</span><h3>The blog is empty and every article URL returns 404</h3></div>
+      <div class="finding-head"><span class="fid">C5</span><span class="sev sev-critical">Critical</span><h3>The blog is empty and every article URL returns 404</h3></div>
+      <div class="recheck open"><span class="rc-tag">Still open · 14 Oct</span><span>Still empty nine days later. Old <code>/en/blog/&lt;slug&gt;</code> URLs now 301 to <code>/blog/&lt;slug&gt;</code>, which returns 404, so the redirect leads nowhere.</span></div>
       <p><code>/blog</code> and <code>/ar/blog</code> load with the heading and newsletter box, but the list shows "No events match these filters". There are 0 posts. All 10 former article URLs, old and new paths, return 404, including the 1,832-word Saudi National Day guide. The sitemap lists only the two index pages. This most likely happened while the test posts were being removed, or the blog list is now running the events filter query.</p>
-      <div class="evidence"><span class="ev-label">curl -w "%{http_code}" · 5 Oct 2026</span><code>/blog                                       200   "No events match these filters."
+      <div class="evidence"><span class="ev-label">curl -w "%{http_code}" · 14 Oct 2026</span><code>/blog                                       200   "No events match these filters."
 /en/blog/ramadan-campaign-checklist         301 → /blog/ramadan-campaign-checklist → 404
 /ar/blog/ramadan-campaign-checklist         404
 /blog/saudi-national-day-marketing-ideas    404
@@ -271,6 +272,7 @@ sitemap.xml blog URLs                       /blog, /ar/blog only</code></div>
           <li>og:image on all 220 pages (H2); real 404s (H3); www 301 (H4)</li>
           <li>CDN cache HIT with TTFB 0.24–0.34&nbsp;s (H6); single-brand titles (H7)</li>
           <li>Security headers, pagination canonicals, sitemap lastmod, meta descriptions, llms.txt</li>
+          <li><b>New on 14 Oct:</b> Organization + WebSite schema and CollectionPage hubs (H5); favicon, apple icon, manifest (M9); homepage filter chips (L5)</li>
         </ul>
       </div>
       <div class="summary-card critical">
@@ -278,9 +280,9 @@ sitemap.xml blog URLs                       /blog, /ar/blog only</code></div>
         <ul>
           <li><b>C5</b> Restore the blog posts and redirect their old URLs</li>
           <li><b>H8</b> GPTBot still gets 429, and browsers still get the 403 challenge</li>
-          <li><b>H5</b> Add Organization schema, plus schema on the homepage and hubs</li>
-          <li><b>L5</b> Replace the Conferences / Exhibitions / Workshops / Networking chips</li>
-          <li><b>M9</b> favicon.ico, apple-touch-icon, manifest · <b>L1</b> social links · <b>L2</b> alt text</li>
+          <li><b>L1</b> Real social profile links, then add them as Organization <code>sameAs</code></li>
+          <li><b>L2</b> Alt text on all 2,106 images</li>
+          <li><b>M10</b> Slim the homepage HTML (now 249&nbsp;KB) · <b>M11</b> Article schema once posts return</li>
         </ul>
       </div>
     </div>
@@ -445,7 +447,8 @@ Saudi National Day Marketing Ideas: 7 Strategic …   ← on the /ar/ URL</code>
     </div>
 
     <div class="finding" data-fix="L5">
-      <div class="finding-head"><span class="fid">L5</span><span class="sev sev-low">Low · new</span><h3>Homepage filter chips don't match the site's events</h3></div>
+      <div class="finding-head"><span class="fid">L5</span><span class="sev sev-low">Low</span><h3>Homepage filter chips don't match the site's events</h3></div>
+      <div class="recheck fixed"><span class="rc-tag">Fixed · 14 Oct</span><span>The chips are now All Events, Must-Use, National Days, Shopping Seasons and Religious Occasions, and the subtitle no longer mentions conferences or exhibitions.</span></div>
       <p>The Upcoming Highlights filters are Conferences, Exhibitions, Workshops and Networking. The site has no events of those types, so every chip leads to an empty list. The subtitle still says "conferences, exhibitions".</p>
       <div class="fix"><b>Fix →</b> Use the categories <code>/events</code> already supports: <b>All Events · Must-Use · National Days · Shopping Seasons · Religious Occasions</b> (<code>must-use-events</code>, <code>national-days</code>, <code>shopping-seasons</code>, <code>religious-occasions</code>). Point "View all events" at <code>/events?category=…</code> for the active chip.</div>
     </div>
@@ -496,14 +499,14 @@ duplicate    4   (/, /about, /privacy, /terms share one description)
 
     <div class="finding" data-fix="M9">
       <div class="finding-head"><span class="fid">M9</span><span class="sev sev-medium">Medium</span><h3>No favicon.ico, apple-touch-icon or web manifest</h3></div>
-      <div class="recheck open"><span class="rc-tag">Still open · 5 Oct</span><span><code>/favicon.ico</code>, <code>/apple-touch-icon.png</code> and <code>/manifest.webmanifest</code> still return 404.</span></div>
+      <div class="recheck fixed"><span class="rc-tag">Fixed · 14 Oct</span><span><code>/favicon.ico</code>, <code>/apple-icon.png</code> and <code>/manifest.webmanifest</code> all return 200 and are linked in the head.</span></div>
       <p>Only <code>/icon.svg</code> exists. <code>/favicon.ico</code>, <code>/apple-touch-icon.png</code> and <code>/manifest.webmanifest</code> all return 404.</p>
       <div class="fix"><b>Fix →</b> Add <code>app/favicon.ico</code> (48×48), <code>app/apple-icon.png</code> (180×180) and <code>app/manifest.ts</code>.</div>
     </div>
 
     <div class="finding" data-fix="L1">
       <div class="finding-head"><span class="fid">L1</span><span class="sev sev-low">Low</span><h3>Footer social links go to platform home pages</h3></div>
-      <div class="recheck open"><span class="rc-tag">Still open · 5 Oct</span><span>The footer still links to <code>x.com</code>, <code>instagram.com</code> and <code>linkedin.com</code>.</span></div>
+      <div class="recheck open"><span class="rc-tag">Still open · 14 Oct</span><span>The footer still links to <code>x.com</code>, <code>instagram.com</code> and <code>linkedin.com</code>, so the new Organization schema has no <code>sameAs</code>.</span></div>
       <p>The icons link to <code>https://x.com</code>, <code>https://instagram.com</code> and <code>https://linkedin.com</code> rather than the brand's profiles.</p>
       <div class="fix"><b>Fix →</b> Use the real profile URLs, and reuse them in Organization <code>sameAs</code> (H5).</div>
     </div>
@@ -529,7 +532,7 @@ duplicate    4   (/, /about, /privacy, /terms share one description)
 
     <div class="finding" data-fix="H5">
       <div class="finding-head"><span class="fid">H5</span><span class="sev sev-high">High</span><h3>No Organization, WebSite or BreadcrumbList schema</h3></div>
-      <div class="recheck partial"><span class="rc-tag">Partly done · 5 Oct</span><span>WebPage, WebSite and BreadcrumbList are on 132 pages. There is still no Organization, and 88 pages (homepage, calendar, events, countries and industries hubs) have no JSON-LD.</span></div>
+      <div class="recheck fixed"><span class="rc-tag">Fixed · 14 Oct</span><span>The homepage carries Organization (with logo) and WebSite schema, 74 hub pages use CollectionPage, and 196 pages have BreadcrumbList. Only 12 utility pages (about, terms, privacy, newsletter, advertise, submit event) have none, which is fine.</span></div>
       <p>The homepage and all country and industry pages (44 URLs) have no structured data at all. Pages show a visible breadcrumb but no <code>BreadcrumbList</code>.</p>
       <div class="fix"><b>Fix →</b> Add one <code>@graph</code> with Organization (name, url, logo, <code>sameAs</code>) and WebSite (<code>inLanguage: ["en","ar"]</code>) in the root layout, plus BreadcrumbList wherever the breadcrumb renders.</div>
     </div>
@@ -545,7 +548,7 @@ duplicate    4   (/, /about, /privacy, /terms share one description)
 
     <div class="finding" data-fix="M11">
       <div class="finding-head"><span class="fid">M11</span><span class="sev sev-medium">Medium</span><h3>Article schema lacks author, publisher and image</h3></div>
-      <div class="recheck partial"><span class="rc-tag">Blocked · 5 Oct</span><span>There are no blog posts to mark up until C5 is fixed.</span></div>
+      <div class="recheck partial"><span class="rc-tag">Blocked · 14 Oct</span><span>There are still no blog posts to mark up until C5 is fixed.</span></div>
       <div class="evidence"><span class="ev-label">JSON-LD — /en/blog/ramadan-campaign-checklist</span><code>{"@type":"Article","headline":"…","datePublished":"…","dateModified":"…",
  "inLanguage":"en","mainEntityOfPage":"http://calender.marketing/…"}
 ← no author · no publisher · no image</code></div>
@@ -588,7 +591,7 @@ x-hcdn-cache-status: DYNAMIC</code></div>
 
     <div class="finding" data-fix="M10">
       <div class="finding-head"><span class="fid">M10</span><span class="sev sev-medium">Medium</span><h3>Heavy homepage HTML</h3></div>
-      <div class="recheck partial"><span class="rc-tag">Partly done · 5 Oct</span><span>Homepage HTML went from 362 KB to 257 KB.</span></div>
+      <div class="recheck partial"><span class="rc-tag">Partly done · 14 Oct</span><span>Homepage HTML went from 362 KB to 249 KB.</span></div>
       <p>The homepage HTML is 362 KB, including about 148 KB of inline RSC payload, with 2,573 DOM nodes and 90 H3s. Event data is sent twice: once as HTML and once as hydration JSON.</p>
       <div class="fix"><b>Fix →</b> Keep event cards as Server Components, pass client components only the fields they need (id, name, date), and show fewer cards on the homepage with a "View all" link.</div>
     </div>
@@ -607,7 +610,7 @@ x-hcdn-cache-status: DYNAMIC</code></div>
 
     <div class="finding" data-fix="H8">
       <div class="finding-head"><span class="fid">H8</span><span class="sev sev-high">High</span><h3>Hostinger's CDN blocks GPTBot and challenges first-time browsers</h3></div>
-      <div class="recheck open"><span class="rc-tag">Still open · 5 Oct</span><span>GPTBot still gets 429, and a browser-like request still gets the 403 challenge page.</span></div>
+      <div class="recheck open"><span class="rc-tag">Still open · 14 Oct</span><span>GPTBot still gets 429, and a browser-like request still gets the 403 challenge page.</span></div>
       <p>robots.txt allows every bot, but the CDN answers GPTBot with 429 every time. Separately, a fresh Chrome session first receives a 403 challenge page (with <code>noindex,nofollow</code> and a meta refresh) and reloads twice before the real page appears. That extra round trip lands on real visitors' first load.</p>
       <div class="evidence"><span class="ev-label">curl -A "&lt;bot&gt;" https://calendar.marketing/</span><code>GPTBot/1.2        429   429   ← blocked, both attempts
 OAI-SearchBot     200
@@ -648,7 +651,7 @@ w=3840   image/png   2,293,941 bytes
 
     <div class="finding" data-fix="L2">
       <div class="finding-head"><span class="fid">L2</span><span class="sev sev-low">Low</span><h3>Industry images have empty alt text</h3></div>
-      <div class="recheck open"><span class="rc-tag">Still open · 5 Oct</span><span>All 2,106 images across the 220 pages still have <code>alt=""</code>.</span></div>
+      <div class="recheck open"><span class="rc-tag">Still open · 14 Oct</span><span>All 2,106 images across the 220 pages still have <code>alt=""</code>.</span></div>
       <p>All 15 industry images use <code>alt=""</code>. They represent content (the industry), so descriptive alt text helps Google Images and screen-reader users.</p>
       <div class="fix"><b>Fix →</b> Use alt text such as <code>alt="F&amp;B brand Ramadan campaign"</code>, built from the industry name.</div>
     </div>
@@ -782,10 +785,10 @@ w=3840   image/png   2,293,941 bytes
     L4:{sev:'low', pts:{ai:3}},
     L5:{sev:'low', pts:{content:2}}
   };
-  var PARTIAL = {H5:{schema:12}};   // WebSite + BreadcrumbList live on 132 pages
+  var PARTIAL = {};   // partly-done fixes whose live work counts toward the score
   var MONITOR = ['P1','P2','P3','P4','P5'];
-  // Verified live on the 5 Oct 2026 re-audit. A viewer's own ticks override these.
-  var VERIFIED = ['C1','C2','C3','C4','H1','H2','H3','H4','H6','H7','H9','M1','M2','M3','M4','M5','M6','M7','M8','L3','L4'];
+  // Verified live on the 14 Oct 2026 re-audit. A viewer's own ticks override these.
+  var VERIFIED = ['C1','C2','C3','C4','H1','H2','H3','H4','H5','H6','H7','H9','M1','M2','M3','M4','M5','M6','M7','M8','M9','L3','L4','L5'];
   var state = {};           // id -> true/false
   var mode = 'loading', readOnly = false;
 
